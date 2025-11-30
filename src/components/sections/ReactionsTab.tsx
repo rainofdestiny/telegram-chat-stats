@@ -98,12 +98,21 @@ export default function ReactionsTab({
       return selectedEmojis.some((e) => (r[e] ?? 0) > 0);
     });
     return filtered
-      .map((m) => ({
-        id: (m as any).id as number,
-        from: m.from,
-        text: m.text ?? "",
-        reactions: totalReactionsClassic(m.reactions as any),
-      }))
+      .map((m) => {
+        let count: number;
+        if (selectedEmojis.length > 0) {
+          const r = reactionsMapClassic(m.reactions as any);
+          count = selectedEmojis.reduce((acc, e) => acc + (r[e] ?? 0), 0);
+        } else {
+          count = totalReactionsClassic(m.reactions as any);
+        }
+        return {
+          id: (m as any).id as number,
+          from: m.from,
+          text: m.text ?? "",
+          reactions: count,
+        };
+      })
       .sort((a, b) => b.reactions - a.reactions);
   }, [humans, selectedEmojis]);
 
