@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import TopAuthorsTable from "../TopAuthorsTable";
 import TopMessagesTable from "../TopMessagesTable";
-import { buildTopAuthors } from "../../lib/telegram";
+import { buildTopAuthors } from "../../lib/stats";
 import type { ParsedMessage, Row } from "../../types";
 import { pageSlice, totalReactions, reactionsMap } from "../../lib/helpers";
 

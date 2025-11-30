@@ -4,7 +4,7 @@ import ReactionsChart from "../reactions/ReactionsChart";
 import TopEmojisTable from "../reactions/TopEmojisTable";
 import TopReactionAuthorsTable from "../reactions/TopReactionAuthorsTable";
 import TopReactionMessagesTable from "../reactions/TopReactionMessagesTable";
-import { buildTopAuthorsByReactions } from "../../lib/telegram";
+import { buildTopAuthorsByReactions } from "../../lib/stats";
 import type { ParsedMessage, Row } from "../../types";
 import {
   pageSlice,
@@ -245,9 +245,8 @@ export default function ReactionsTab({
               <button
                 key={e}
                 onClick={() => toggleEmoji(e)}
-                className={`px-2 py-1 rounded-full border border-slate-700 ${
-                  active ? "bg-purple-600" : "bg-slate-700 hover:bg-purple-500"
-                } transition`}
+                className={`px-2 py-1 rounded-full border border-slate-700 ${active ? "bg-purple-600" : "bg-slate-700 hover:bg-purple-500"
+                  } transition`}
                 title={e}
               >
                 {e}

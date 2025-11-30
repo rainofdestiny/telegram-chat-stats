@@ -1,5 +1,4 @@
 // src/lib/helpers.ts
-import type { ParsedMessage } from "../types";
 
 /** ===================== ПАГИНАЦИЯ ===================== */
 export const pageSlice = <T>(arr: T[], page: number, size: number): T[] =>
@@ -164,14 +163,4 @@ export function weekKey(d: Date): string {
     1 +
     Math.round(((date.getTime() - firstThursday.getTime()) / 86400000 - 3) / 7);
   return `${date.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
-}
-
-/** ===================== ФИЛЬТР ЛЮДЕЙ ===================== */
-export function isHuman(m: ParsedMessage): boolean {
-  const id = m.from_id ?? "";
-  if (!m.from || m.from.trim().length === 0) return false;
-  if (id.startsWith("channel") || id.startsWith("bot")) return false;
-  // @ts-expect-error телеграм-экспорт
-  if (m.forwarded_from || m.saved_from) return false;
-  return true;
 }

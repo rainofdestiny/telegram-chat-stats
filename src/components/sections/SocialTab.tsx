@@ -3,7 +3,7 @@ import WeeklyActiveAuthorsChart from "../social/WeeklyActiveAuthorsChart";
 import WeeklyNewAuthorsChart from "../social/WeeklyNewAuthorsChart";
 import StableAuthorsTable from "../social/StableAuthorsTable";
 import ReplyGraph from "../social/ReplyGraph";
-import { buildReplyGraph } from "../../lib/telegram";
+import { buildReplyGraph } from "../../lib/stats";
 import type { ParsedMessage, Row } from "../../types";
 import { pageSlice, weekKey, weekStartISO } from "../../lib/helpers";
 

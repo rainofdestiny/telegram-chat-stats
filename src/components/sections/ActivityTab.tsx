@@ -8,7 +8,7 @@ import {
   buildHourWeekdayHeatmap,
   buildDailyChart,
   buildWeeklyTrend,
-} from "../../lib/telegram";
+} from "../../lib/stats";
 import type { ParsedMessage } from "../../types";
 
 export default function ActivityTab({ humans }: { humans: ParsedMessage[] }) {

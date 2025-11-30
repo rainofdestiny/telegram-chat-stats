@@ -10,7 +10,6 @@ import ReactionsTab from "./components/sections/ReactionsTab";
 import SocialTab from "./components/sections/SocialTab";
 
 import { parseMessages } from "./lib/telegram";
-import { isHuman } from "./lib/helpers";
 import type { RawMessage, ParsedMessage } from "./types";
 
 export default function App() {
@@ -25,8 +24,7 @@ export default function App() {
     setRaw(msgs);
   };
 
-  const parsed: ParsedMessage[] = useMemo(() => parseMessages(raw), [raw]);
-  const humans = useMemo(() => parsed.filter(isHuman), [parsed]);
+  const humans: ParsedMessage[] = useMemo(() => parseMessages(raw), [raw]);
 
   const [tab, setTab] = useState<
     "activity" | "tops" | "content" | "reactions" | "social"
@@ -43,7 +41,7 @@ export default function App() {
 
         <FileDrop onJSON={onJSON} />
 
-        {parsed.length > 0 && (
+        {humans.length > 0 && (
           <div className="card bg-gradient-to-br from-[#111122] to-[#0a0a15] shadow-lg shadow-purple-500/20">
             <div className="flex flex-col gap-4">
               <div className="flex justify-between gap-4 flex-wrap">
@@ -74,19 +72,19 @@ export default function App() {
           </div>
         )}
 
-        {parsed.length > 0 && tab === "activity" && (
+        {humans.length > 0 && tab === "activity" && (
           <ActivityTab humans={humans} />
         )}
-        {parsed.length > 0 && tab === "tops" && (
+        {humans.length > 0 && tab === "tops" && (
           <TopsTab humans={humans} chatSlug={chatSlug} />
         )}
-        {parsed.length > 0 && tab === "content" && (
+        {humans.length > 0 && tab === "content" && (
           <ContentTab humans={humans} chatSlug={chatSlug} />
         )}
-        {parsed.length > 0 && tab === "reactions" && (
+        {humans.length > 0 && tab === "reactions" && (
           <ReactionsTab humans={humans} chatSlug={chatSlug} />
         )}
-        {parsed.length > 0 && tab === "social" && <SocialTab humans={humans} />}
+        {humans.length > 0 && tab === "social" && <SocialTab humans={humans} />}
 
         <footer className="text-center text-xs text-gray-500 pt-6">
           Все данные обрабатываются локально в браузере
